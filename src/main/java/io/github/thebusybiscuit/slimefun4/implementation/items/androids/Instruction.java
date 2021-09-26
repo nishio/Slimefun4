@@ -38,14 +38,14 @@ public enum Instruction {
     START(AndroidType.NONE, HeadTexture.SCRIPT_START),
 
     /**
-     * This {@link Instruction} is the end token of a {@link Script}.
-     * Once this {@link Instruction} is reached, the {@link Script} will start again.
+     * This {@link Instruction} is the end token of a {@link Script}. Once this
+     * {@link Instruction} is reached, the {@link Script} will start again.
      */
     REPEAT(AndroidType.NONE, HeadTexture.SCRIPT_REPEAT),
 
     /**
-     * This {@link Instruction} will make the {@link ProgrammableAndroid} wait
-     * for one Slimefun tick.
+     * This {@link Instruction} will make the {@link ProgrammableAndroid} wait for
+     * one Slimefun tick.
      */
     WAIT(AndroidType.NONE, HeadTexture.SCRIPT_WAIT),
 
@@ -114,8 +114,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} above
-     * and then move itself to that new {@link Location}.
+     * This will make a {@link MinerAndroid} dig the {@link Block} above and then
+     * move itself to that new {@link Location}.
      */
     MOVE_AND_DIG_UP(AndroidType.MINER, HeadTexture.SCRIPT_DIG_UP, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.UP);
@@ -123,8 +123,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} ahead
-     * and then move itself to that new {@link Location}.
+     * This will make a {@link MinerAndroid} dig the {@link Block} ahead and then
+     * move itself to that new {@link Location}.
      */
     MOVE_AND_DIG_FORWARD(AndroidType.MINER, HeadTexture.SCRIPT_DIG_FORWARD, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
@@ -132,8 +132,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link MinerAndroid} dig the {@link Block} below
-     * and then move itself to that new {@link Location}.
+     * This will make a {@link MinerAndroid} dig the {@link Block} below and then
+     * move itself to that new {@link Location}.
      */
     MOVE_AND_DIG_DOWN(AndroidType.MINER, HeadTexture.SCRIPT_DIG_DOWN, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.DOWN);
@@ -141,8 +141,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link ButcherAndroid} attack any {@link LivingEntity}
-     * ahead of them.
+     * This will make a {@link ButcherAndroid} attack any {@link LivingEntity} ahead
+     * of them.
      */
     ATTACK_MOBS_ANIMALS(AndroidType.FIGHTER, HeadTexture.SCRIPT_ATTACK, (android, b, inv, face) -> {
         Predicate<LivingEntity> predicate = e -> true;
@@ -150,8 +150,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link ButcherAndroid} attack any {@link Monster}
-     * ahead of them.
+     * This will make a {@link ButcherAndroid} attack any {@link Monster} ahead of
+     * them.
      */
     ATTACK_MOBS(AndroidType.FIGHTER, HeadTexture.SCRIPT_ATTACK, (android, b, inv, face) -> {
         Predicate<LivingEntity> predicate = Monster.class::isInstance;
@@ -177,7 +177,8 @@ public enum Instruction {
     }),
 
     /**
-     * This will make a {@link WoodcutterAndroid} chop down the tree in front of them.
+     * This will make a {@link WoodcutterAndroid} chop down the tree in front of
+     * them.
      */
     CHOP_TREE(AndroidType.WOODCUTTER, HeadTexture.SCRIPT_CHOP_TREE),
 
@@ -188,8 +189,8 @@ public enum Instruction {
     CATCH_FISH(AndroidType.FISHERMAN, HeadTexture.SCRIPT_FISH, (android, b, inv, face) -> android.fish(b, inv)),
 
     /**
-     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
-     * the {@link Block} in front of them.
+     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest the
+     * {@link Block} in front of them.
      */
     FARM_FORWARD(AndroidType.FARMER, HeadTexture.SCRIPT_FARM_FORWARD, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
@@ -197,8 +198,8 @@ public enum Instruction {
     }),
 
     /**
-     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
-     * the {@link Block} below.
+     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest the
+     * {@link Block} below.
      */
     FARM_DOWN(AndroidType.FARMER, HeadTexture.SCRIPT_FARM_DOWN, (android, b, inv, face) -> {
         Block target = b.getRelative(BlockFace.DOWN);
@@ -206,8 +207,8 @@ public enum Instruction {
     }),
 
     /**
-     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
-     * the {@link Block} in front of them.
+     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest the
+     * {@link Block} in front of them.
      * 
      * <strong>This includes plants from ExoticGarden.</strong>
      */
@@ -217,8 +218,8 @@ public enum Instruction {
     }),
 
     /**
-     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest
-     * the {@link Block} below.
+     * This {@link Instruction} will make a {@link FarmerAndroid} try to harvest the
+     * {@link Block} below.
      * 
      * <strong>This includes plants from ExoticGarden.</strong>
      */
@@ -228,8 +229,8 @@ public enum Instruction {
     }),
 
     /**
-     * This {@link Instruction} will force the {@link ProgrammableAndroid} to push their
-     * items into an {@link AndroidInterface} ahead of them.
+     * This {@link Instruction} will force the {@link ProgrammableAndroid} to push
+     * their items into an {@link AndroidInterface} ahead of them.
      */
     INTERFACE_ITEMS(AndroidType.NONE, HeadTexture.SCRIPT_PUSH_ITEMS, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
@@ -287,13 +288,13 @@ public enum Instruction {
     }
 
     /**
-     * Get a value from the cache map rather than calling {@link Enum#valueOf(Class, String)}.
-     * This is 25-40% quicker than the standard {@link Enum#valueOf(Class, String)} depending on
-     * your Java version. It also means that you can avoid an IllegalArgumentException which let's
-     * face it is always good.
+     * Get a value from the cache map rather than calling
+     * {@link Enum#valueOf(Class, String)}. This is 25-40% quicker than the standard
+     * {@link Enum#valueOf(Class, String)} depending on your Java version. It also
+     * means that you can avoid an IllegalArgumentException which let's face it is
+     * always good.
      *
-     * @param value
-     *            The value which you would like to look up.
+     * @param value The value which you would like to look up.
      * 
      * @return The {@link Instruction} or null if it does not exist.
      */

@@ -65,6 +65,7 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 
+@SuppressWarnings("deprecation")
 public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock, RecipeDisplayItem {
 
     private static final List<BlockFace> POSSIBLE_ROTATIONS = Arrays.asList(BlockFace.NORTH, BlockFace.EAST,
@@ -797,6 +798,20 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
             index = POSSIBLE_ROTATIONS.size() - 1;
         }
 
+        BlockFace rotation = POSSIBLE_ROTATIONS.get(index);
+
+        BlockData blockData = Material.PLAYER_HEAD.createBlockData(data -> {
+            if (data instanceof Rotatable) {
+                Rotatable rotatable = ((Rotatable) data);
+                rotatable.setRotation(rotation.getOppositeFace());
+            }
+        });
+
+        b.setBlockData(blockData);
+        BlockStorage.addBlockInfo(b, "rotation", rotation.name());
+    }
+
+    protected void see_north(Block b, BlockFace current, int index) {
         BlockFace rotation = POSSIBLE_ROTATIONS.get(index);
 
         BlockData blockData = Material.PLAYER_HEAD.createBlockData(data -> {

@@ -244,6 +244,14 @@ public enum Instruction {
     INTERFACE_FUEL(AndroidType.NONE, HeadTexture.SCRIPT_PULL_FUEL, (android, b, inv, face) -> {
         Block target = b.getRelative(face);
         android.refuel(inv, target);
+    }),
+
+    /**
+     * This will make the {@link ProgrammableAndroid} rotate to see north.
+     */
+    TURN_NORTH(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
+        int mod = 0;
+        android.see_north(b, face, mod);
     });
 
     private static final Map<String, Instruction> nameLookup = new HashMap<>();

@@ -65,6 +65,8 @@ import me.mrCookieSlime.Slimefun.api.inventory.BlockMenu;
 import me.mrCookieSlime.Slimefun.api.inventory.BlockMenuPreset;
 import me.mrCookieSlime.Slimefun.api.item_transport.ItemTransportFlow;
 
+import org.python.util.PythonInterpreter;
+
 @SuppressWarnings("deprecation")
 public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock, RecipeDisplayItem {
 
@@ -823,6 +825,12 @@ public class ProgrammableAndroid extends SlimefunItem implements InventoryBlock,
 
         b.setBlockData(blockData);
         BlockStorage.addBlockInfo(b, "rotation", rotation.name());
+    }
+
+    protected void python() {
+        try (PythonInterpreter pyInterp = new PythonInterpreter()) {
+            pyInterp.exec("print('Hello Python World!')");
+        }
     }
 
     protected void depositItems(BlockMenu menu, Block facedBlock) {

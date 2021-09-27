@@ -252,6 +252,10 @@ public enum Instruction {
     TURN_NORTH(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
         int mod = 0;
         android.see_north(b, face, mod);
+    }),
+
+    RUN_PYTHON(AndroidType.NONE, HeadTexture.SCRIPT_LEFT, (android, b, inv, face) -> {
+        android.python();
     });
 
     private static final Map<String, Instruction> nameLookup = new HashMap<>();
